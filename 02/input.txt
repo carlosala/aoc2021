@@ -1,4 +1,4 @@
-const input = `forward 5
+forward 5
 down 7
 forward 8
 forward 1
@@ -997,6 +997,4 @@ up 4
 down 3
 forward 7
 forward 9
-forward 7`
-
-export default input
+forward 7

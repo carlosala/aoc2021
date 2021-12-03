@@ -1,5 +1,3 @@
-import input from "./input.ts"
-
 function part1(i: Array<number>) {
   let increments = 0
   for (let j = 0; j < i.length - 1; j++) {
@@ -18,6 +16,8 @@ function part2(i: Array<number>) {
   return increments
 }
 
-const inputArray = input.split("\n").map((x: string) => Number(x))
+const inputArray = Deno.readTextFileSync("input.txt")
+  .split("\n")
+  .map((x: string) => Number(x))
 console.log("Part 1: " + part1(inputArray))
 console.log("Part 2: " + part2(inputArray))

@@ -40,6 +40,6 @@ function part2(i: Array<string>) {
   return xPos * depth
 }
 
-const inputArray = input.split("\n")
+const inputArray = Deno.readTextFileSync("input.txt").split("\n")
 console.log("Part 1: " + part1(inputArray))
 console.log("Part 2: " + part2(inputArray))

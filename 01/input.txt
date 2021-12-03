@@ -1,4 +1,4 @@
-const input = `156
+156
 153
 163
 168
@@ -1997,6 +1997,4 @@ const input = `156
 3755
 3762
 3769
-3770`
-
-export default input
+3770
