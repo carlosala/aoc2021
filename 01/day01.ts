@@ -1,4 +1,6 @@
-function part1(i: Array<number>) {
+import { inputPath } from "../utils.ts"
+
+export function part1(i: Array<number>) {
   let increments = 0
   for (let j = 0; j < i.length - 1; j++) {
     if (i[j + 1] > i[j]) increments++
@@ -6,7 +8,7 @@ function part1(i: Array<number>) {
   return increments
 }
 
-function part2(i: Array<number>) {
+export function part2(i: Array<number>) {
   let increments = 0
   for (let j = 0; j < i.length - 3; j++) {
     const first = i[j] + i[j + 1] + i[j + 2]
@@ -16,8 +18,13 @@ function part2(i: Array<number>) {
   return increments
 }
 
-const inputArray = Deno.readTextFileSync("input.txt")
-  .split("\n")
-  .map((x: string) => Number(x))
-console.log("Part 1: " + part1(inputArray))
-console.log("Part 2: " + part2(inputArray))
+if (import.meta.main) {
+  const inputArray = Deno.readTextFileSync(
+    inputPath(import.meta.url, "input.txt")
+  )
+    .trim()
+    .split("\n")
+    .map((x: string) => Number(x))
+  console.log("Part 1: " + part1(inputArray))
+  console.log("Part 2: " + part2(inputArray))
+}

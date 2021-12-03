@@ -1,3 +1,4 @@
+import { inputPath } from "./utils.ts"
 import "https://deno.land/x/dotenv/load.ts"
 
 async function downloadInput(day: string) {
@@ -10,7 +11,10 @@ async function downloadInput(day: string) {
     Cookie: `session=${Deno.env.get("AUTH_COOKIE")}`,
   })
   const data = await fetch(url, { headers }).then((r) => r.text())
-  const path = Number(day) > 9 ? `${day}/input.txt` : `0${day}/input.txt`
+  const path =
+    Number(day) < 9
+      ? inputPath(import.meta.url, `0${day}/input.txt`)
+      : inputPath(import.meta.url, `${day}/input.txt`)
   Deno.writeTextFile(path, data)
 }
 

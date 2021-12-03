@@ -1,6 +1,6 @@
-import input from "./input.ts"
+import { inputPath } from "../utils.ts"
 
-function part1(i: Array<string>) {
+export function part1(i: Array<string>) {
   let xPos = 0
   let depth = 0
   i.forEach((act) => {
@@ -19,7 +19,7 @@ function part1(i: Array<string>) {
   return xPos * depth
 }
 
-function part2(i: Array<string>) {
+export function part2(i: Array<string>) {
   let xPos = 0
   let depth = 0
   let aim = 0
@@ -40,6 +40,12 @@ function part2(i: Array<string>) {
   return xPos * depth
 }
 
-const inputArray = Deno.readTextFileSync("input.txt").split("\n")
-console.log("Part 1: " + part1(inputArray))
-console.log("Part 2: " + part2(inputArray))
+if (import.meta.main) {
+  const inputArray = Deno.readTextFileSync(
+    inputPath(import.meta.url, "input.txt")
+  )
+    .trim()
+    .split("\n")
+  console.log("Part 1: " + part1(inputArray))
+  console.log("Part 2: " + part2(inputArray))
+}

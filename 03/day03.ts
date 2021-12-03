@@ -1,4 +1,6 @@
-function partOne(i: Array<string>) {
+import { inputPath } from "../utils.ts"
+
+export function part1(i: Array<string>) {
   const inputLength = i.length
   const numberLength = i[0].length
   let gamma = 0
@@ -13,7 +15,7 @@ function partOne(i: Array<string>) {
   return gamma * epsilon
 }
 
-function partTwo(i: Array<string>) {
+export function part2(i: Array<string>) {
   let most = [...i]
   let less = [...i]
   let counter = 0
@@ -43,6 +45,12 @@ function partTwo(i: Array<string>) {
   return parseInt(most[0], 2) * parseInt(less[0], 2)
 }
 
-const inputArray = Deno.readTextFileSync("input.txt").split("\n")
-console.log(partOne(inputArray))
-console.log(partTwo(inputArray))
+if (import.meta.main) {
+  const inputArray = Deno.readTextFileSync(
+    inputPath(import.meta.url, "input.txt")
+  )
+    .trim()
+    .split("\n")
+  console.log("Part 1: " + part1(inputArray))
+  console.log("Part 2: " + part2(inputArray))
+}
