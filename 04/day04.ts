@@ -31,31 +31,15 @@ export function part1(i: Input) {
   for (let j = 0; j < i.numbers.length; j++) {
     stack.push(i.numbers[j])
     for (let b = 0; b < i.boards.length; b++) {
-      for (let r = 0; r < 5; r++) {
-        let columnWinner = false
+      for (let a = 0; a < 5; a++) {
+        let rowWinner = true
+        let columnWinner = true
         for (let c = 0; c < 5; c++) {
-          if (stack.includes(i.boards[b][r][c])) columnWinner = true
-          else {
-            columnWinner = false
-            break
-          }
+          if (!stack.includes(i.boards[b][a][c])) rowWinner = false
+          if (!stack.includes(i.boards[b][c][a])) columnWinner = false
+          if (!rowWinner && !columnWinner) break
         }
-        if (columnWinner) {
-          winnerBoard = b
-          break
-        }
-      }
-      if (winnerBoard !== -1) break
-      for (let c = 0; c < 5; c++) {
-        let rowWinner = false
-        for (let r = 0; r < 5; r++) {
-          if (stack.includes(i.boards[b][r][c])) rowWinner = true
-          else {
-            rowWinner = false
-            break
-          }
-        }
-        if (rowWinner) {
+        if (rowWinner || columnWinner) {
           winnerBoard = b
           break
         }
@@ -76,42 +60,26 @@ export function part1(i: Input) {
 
 export function part2(i: Input) {
   const stack: Array<string> = []
-  let winnerBoards: Array<number> = []
+  const winnerBoards: Array<number> = []
   for (let j = 0; j < i.numbers.length; j++) {
     stack.push(i.numbers[j])
     for (let b = 0; b < i.boards.length; b++) {
-      for (let r = 0; r < 5; r++) {
-        let columnWinner = false
+      for (let a = 0; a < 5; a++) {
+        let rowWinner = true
+        let columnWinner = true
         for (let c = 0; c < 5; c++) {
-          if (stack.includes(i.boards[b][r][c])) columnWinner = true
-          else {
-            columnWinner = false
-            break
-          }
+          if (!stack.includes(i.boards[b][a][c])) rowWinner = false
+          if (!stack.includes(i.boards[b][c][a])) columnWinner = false
+          if (!rowWinner && !columnWinner) break
         }
-        if (columnWinner) {
-          winnerBoards.push(b)
-          break
-        }
-      }
-      if (winnerBoards.length !== 0) continue
-      for (let c = 0; c < 5; c++) {
-        let rowWinner = false
-        for (let r = 0; r < 5; r++) {
-          if (stack.includes(i.boards[b][r][c])) rowWinner = true
-          else {
-            rowWinner = false
-            break
-          }
-        }
-        if (rowWinner) {
+        if (rowWinner || columnWinner) {
           winnerBoards.push(b)
           break
         }
       }
     }
     if (winnerBoards.length === 0) continue
-    if (winnerBoards.length >= 1 && winnerBoards.length !== i.boards.length) {
+    if (winnerBoards.length !== i.boards.length) {
       winnerBoards.sort((a, b) => {
         if (a < b) return 1
         return -1
@@ -119,7 +87,7 @@ export function part2(i: Input) {
       for (const boardNum of winnerBoards) {
         i.boards.splice(boardNum, 1)
       }
-      winnerBoards = []
+      winnerBoards.length = 0
     } else break
   }
   let unmarkedSum = 0
