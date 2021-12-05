@@ -15,9 +15,9 @@ export function parseInput(file: string): Input {
 
 export function part1(i: Input) {
   let result = 0
-  const counters: Array<Array<number>> = Array.apply(null, Array(1000)).map(
-    () => Array.apply(null, Array(1000)).map(() => 0)
-  ) // initialize a 1000x1000 matrix with every value=0 is ugly in js/ts
+  const counters: Array<Array<number>> = Array(1000)
+    .fill(0)
+    .map(() => Array(1000).fill(0))
   for (const line of i) {
     const first = { x: line[0][0], y: line[0][1] }
     const second = { x: line[1][0], y: line[1][1] }
@@ -38,9 +38,9 @@ export function part1(i: Input) {
 
 export function part2(i: Input) {
   let result = 0
-  const counters: Array<Array<number>> = Array.apply(null, Array(1000)).map(
-    () => Array.apply(null, Array(1000)).map(() => 0)
-  ) // initialize a 1000x1000 matrix with every value=0 is ugly in js/ts
+  const counters: Array<Array<number>> = Array(1000)
+    .fill(0)
+    .map(() => Array(1000).fill(0))
   for (const line of i) {
     const first = { x: line[0][0], y: line[0][1] }
     const second = { x: line[1][0], y: line[1][1] }
