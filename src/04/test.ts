@@ -6,13 +6,13 @@ const input = parseInput("input.test.txt")
 Deno.test({
   name: "Day 04, part 1",
   fn: () => {
-    assertEquals(4512, part1(input))
+    assertEquals(part1(input), 4512)
   },
 })
 
 Deno.test({
   name: "Day 04, part 2",
   fn: () => {
-    assertEquals(1924, part2(input))
+    assertEquals(part2(input), 1924)
   },
 })

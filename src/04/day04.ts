@@ -11,7 +11,7 @@ export function parseInput(file: string) {
     .split("\n\n")
   const inputObject: Input = {
     numbers: [...inputArray[0].trim().split(",")],
-    boards: [[[]]],
+    boards: [],
   }
   inputArray.shift()
   const boards = inputArray.map((b) => {
