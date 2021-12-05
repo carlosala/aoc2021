@@ -1,6 +1,6 @@
 import { inputPath } from "../utils.ts"
 
-interface Input {
+type Input = {
   numbers: Array<string>
   boards: Array<Array<Array<string>>>
 }

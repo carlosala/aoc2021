@@ -1,24 +1,18 @@
-import { inputPath } from "../utils.ts"
 import { assertEquals } from "https://deno.land/std/testing/asserts.ts"
-import { part1, part2 } from "./day01.ts"
+import { part1, part2, parseInput } from "./day01.ts"
 
-const inputArray = Deno.readTextFileSync(
-  inputPath(import.meta.url, "input.test.txt")
-)
-  .trim()
-  .split("\n")
-  .map((x: string) => Number(x))
+const input = parseInput("input.test.txt")
 
 Deno.test({
   name: "Day 01, part 1",
   fn: () => {
-    assertEquals(7, part1(inputArray))
+    assertEquals(7, part1(input))
   },
 })
 
 Deno.test({
   name: "Day 01, part 2",
   fn: () => {
-    assertEquals(5, part2(inputArray))
+    assertEquals(5, part2(input))
   },
 })

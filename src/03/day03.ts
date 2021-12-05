@@ -1,5 +1,11 @@
 import { inputPath } from "../utils.ts"
 
+export function parseInput(file: string) {
+  return Deno.readTextFileSync(inputPath(import.meta.url, file))
+    .trim()
+    .split("\n")
+}
+
 export function part1(i: Array<string>) {
   const inputLength = i.length
   const numberLength = i[0].length
@@ -46,11 +52,7 @@ export function part2(i: Array<string>) {
 }
 
 if (import.meta.main) {
-  const inputArray = Deno.readTextFileSync(
-    inputPath(import.meta.url, "input.txt")
-  )
-    .trim()
-    .split("\n")
-  console.log("Part 1: " + part1(inputArray))
-  console.log("Part 2: " + part2(inputArray))
+  const input = parseInput("input.txt")
+  console.log("Part 1: " + part1(input))
+  console.log("Part 2: " + part2(input))
 }
