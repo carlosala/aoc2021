@@ -2,7 +2,7 @@ import { inputPath } from "../utils.ts"
 
 type Input = Array<Array<Array<number>>>
 
-export function parseInput(file: string): Input {
+export function parseInput(file: string) {
   const inputString = Deno.readTextFileSync(inputPath(import.meta.url, file))
   const inputArray = inputString
     .trim()
