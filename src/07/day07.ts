@@ -8,7 +8,7 @@ export function parseInput(file: string) {
 }
 
 export function part1(i: Array<number>) {
-  const maxNumber = Math.max.apply(null, i)
+  const maxNumber = Math.max(...i)
   let result = 0
   for (let j = 1; j <= maxNumber; j++) {
     let counter = 0
@@ -22,7 +22,7 @@ export function part1(i: Array<number>) {
 }
 
 export function part2(i: Array<number>) {
-  const maxNumber = Math.max.apply(null, i)
+  const maxNumber = Math.max(...i)
   let result = 0
   const differences: Array<number> = []
   let arrCounter = 0
