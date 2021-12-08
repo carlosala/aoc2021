@@ -13,9 +13,10 @@ async function downloadInput(day: string) {
   const data = await fetch(url, { headers }).then((r) => r.text())
   const path =
     Number(day) < 9
-      ? inputPath(import.meta.url, `0${day}/input.txt`)
-      : inputPath(import.meta.url, `${day}/input.txt`)
-  Deno.writeTextFile(path, data)
+      ? inputPath(import.meta.url, `0${day}`)
+      : inputPath(import.meta.url, `${day}`)
+  Deno.mkdirSync(path)
+  Deno.writeTextFile(`${path}/input.txt`, data)
 }
 
 if (Deno.args.length !== 1)
