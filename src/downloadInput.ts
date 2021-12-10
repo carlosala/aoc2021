@@ -12,7 +12,7 @@ async function downloadInput(day: string) {
   })
   const data = await fetch(url, { headers }).then((r) => r.text())
   const path =
-    Number(day) < 9
+    Number(day) <= 9
       ? inputPath(import.meta.url, `0${day}`)
       : inputPath(import.meta.url, `${day}`)
   Deno.mkdirSync(path)
