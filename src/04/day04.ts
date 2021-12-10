@@ -1,8 +1,8 @@
 import { inputPath } from "../utils.ts"
 
-type Input = {
-  numbers: Array<string>
-  boards: Array<Array<Array<string>>>
+interface Input {
+  numbers: string[]
+  boards: string[][][]
 }
 
 export function parseInput(file: string) {
@@ -17,7 +17,7 @@ export function parseInput(file: string) {
   const boards = inputArray.map((b) => {
     return b
       .trim()
-      .replace(/[ ]{2,}/g, " ")
+      .replace(/ +/g, " ")
       .split("\n")
       .map((x) => x.trim().split(" "))
   })
@@ -26,7 +26,7 @@ export function parseInput(file: string) {
 }
 
 export function part1(i: Input) {
-  const stack: Array<string> = []
+  const stack = []
   let winnerBoard = -1
   for (let j = 0; j < i.numbers.length; j++) {
     stack.push(i.numbers[j])
@@ -52,15 +52,15 @@ export function part1(i: Input) {
   for (let r = 0; r < 5; r++) {
     for (let c = 0; c < 5; c++) {
       const num = i.boards[winnerBoard][r][c]
-      if (!stack.includes(num)) unmarkedSum += Number(num)
+      if (!stack.includes(num)) unmarkedSum += parseInt(num, 10)
     }
   }
-  return unmarkedSum * Number(stack[stack.length - 1])
+  return unmarkedSum * parseInt(stack[stack.length - 1], 10)
 }
 
 export function part2(i: Input) {
-  const stack: Array<string> = []
-  const winnerBoards: Array<number> = []
+  const stack = []
+  const winnerBoards = []
   for (let j = 0; j < i.numbers.length; j++) {
     stack.push(i.numbers[j])
     for (let b = 0; b < i.boards.length; b++) {
@@ -94,10 +94,10 @@ export function part2(i: Input) {
   for (let r = 0; r < 5; r++) {
     for (let c = 0; c < 5; c++) {
       const num = i.boards[0][r][c]
-      if (!stack.includes(num)) unmarkedSum += Number(num)
+      if (!stack.includes(num)) unmarkedSum += parseInt(num, 10)
     }
   }
-  return unmarkedSum * Number(stack[stack.length - 1])
+  return unmarkedSum * parseInt(stack[stack.length - 1], 10)
 }
 
 if (import.meta.main) {

@@ -22,10 +22,10 @@ function getOpening(c: string) {
   return "<"
 }
 
-export function part1(i: Array<Array<string>>) {
+export function part1(i: string[][]) {
   let result = 0
   for (const line of i) {
-    const stack: Array<string> = []
+    const stack = []
     for (const c of line) {
       if (dict[c]) {
         stack.push(c)
@@ -42,11 +42,11 @@ export function part1(i: Array<Array<string>>) {
   return result
 }
 
-export function part2(i: Array<Array<string>>) {
+export function part2(i: string[][]) {
   const results = []
   for (const line of i) {
     let breaking = false
-    const stack: Array<string> = []
+    const stack = []
     for (const c of line) {
       if (dict[c]) {
         stack.push(c)

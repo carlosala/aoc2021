@@ -7,7 +7,7 @@ export function parseInput(file: string) {
     .map((x: string) => parseInt(x, 10))
 }
 
-export function part1(i: Array<number>) {
+export function part1(i: number[]) {
   let increments = 0
   for (let j = 0; j < i.length - 1; j++) {
     if (i[j + 1] > i[j]) increments++
@@ -15,7 +15,7 @@ export function part1(i: Array<number>) {
   return increments
 }
 
-export function part2(i: Array<number>) {
+export function part2(i: number[]) {
   let increments = 0
   for (let j = 0; j < i.length - 3; j++) {
     const first = i[j] + i[j + 1] + i[j + 2]

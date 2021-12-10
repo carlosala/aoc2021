@@ -1,14 +1,13 @@
 import { inputPath } from "../utils.ts"
 
 export function parseInput(file: string) {
-  const inputString = Deno.readTextFileSync(inputPath(import.meta.url, file))
-  return inputString
+  return Deno.readTextFileSync(inputPath(import.meta.url, file))
     .trim()
     .split(",")
     .map((el) => parseInt(el, 10))
 }
 
-export function part1(i: Array<number>) {
+export function part1(i: number[]) {
   const counters = Array(9).fill(0)
   i.forEach((x) => ++counters[x])
   for (let j = 0; j < 80; j++) {
@@ -21,7 +20,7 @@ export function part1(i: Array<number>) {
   return result
 }
 
-export function part2(i: Array<number>) {
+export function part2(i: number[]) {
   const counters = Array(9).fill(0)
   i.forEach((x) => ++counters[x])
   for (let j = 0; j < 256; j++) {

@@ -6,7 +6,7 @@ export function parseInput(file: string) {
     .split("\n")
 }
 
-export function part1(i: Array<string>) {
+export function part1(i: string[]) {
   const inputLength = i.length
   const numberLength = i[0].length
   let gamma = 0
@@ -21,14 +21,14 @@ export function part1(i: Array<string>) {
   return gamma * epsilon
 }
 
-export function part2(i: Array<string>) {
+export function part2(i: string[]) {
   let most = [...i]
   let less = [...i]
   let counter = 0
   while (most.length > 1 || less.length > 1) {
     if (most.length > 1) {
-      const ones: Array<string> = []
-      const zeros: Array<string> = []
+      const ones: string[] = []
+      const zeros: string[] = []
       most.forEach((el) => {
         if (el[counter] === "1") ones.push(el)
         else zeros.push(el)
@@ -37,8 +37,8 @@ export function part2(i: Array<string>) {
       else most = [...zeros]
     }
     if (less.length > 1) {
-      const ones: Array<string> = []
-      const zeros: Array<string> = []
+      const ones: string[] = []
+      const zeros: string[] = []
       less.forEach((el) => {
         if (el[counter] === "1") ones.push(el)
         else zeros.push(el)

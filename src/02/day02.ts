@@ -4,10 +4,10 @@ export function parseInput(file: string) {
   return Deno.readTextFileSync(inputPath(import.meta.url, file))
     .trim()
     .split("\n")
-    .map((x) => x.trim().split(" "))
+    .map((x) => x.split(" "))
 }
 
-export function part1(i: Array<Array<string>>) {
+export function part1(i: string[][]) {
   let xPos = 0
   let depth = 0
   i.forEach((act) => {
@@ -25,7 +25,7 @@ export function part1(i: Array<Array<string>>) {
   return xPos * depth
 }
 
-export function part2(i: Array<Array<string>>) {
+export function part2(i: string[][]) {
   let xPos = 0
   let depth = 0
   let aim = 0

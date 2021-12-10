@@ -1,21 +1,17 @@
 import { inputPath } from "../utils.ts"
 
-type Input = Array<Array<Array<number>>>
-
 export function parseInput(file: string) {
-  const inputString = Deno.readTextFileSync(inputPath(import.meta.url, file))
-  const inputArray = inputString
+  return Deno.readTextFileSync(inputPath(import.meta.url, file))
     .trim()
     .split("\n")
     .map((x) =>
       x.split(" -> ").map((y) => y.split(",").map((z) => parseInt(z, 10)))
     )
-  return inputArray
 }
 
-export function part1(i: Input) {
+export function part1(i: number[][][]) {
   let result = 0
-  const counters: Array<Array<number>> = Array(1000)
+  const counters = Array(1000)
     .fill(0)
     .map(() => Array(1000).fill(0))
   for (const line of i) {
@@ -36,9 +32,9 @@ export function part1(i: Input) {
   return result
 }
 
-export function part2(i: Input) {
+export function part2(i: number[][][]) {
   let result = 0
-  const counters: Array<Array<number>> = Array(1000)
+  const counters = Array(1000)
     .fill(0)
     .map(() => Array(1000).fill(0))
   for (const line of i) {

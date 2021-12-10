@@ -7,7 +7,7 @@ export function parseInput(file: string) {
     .map((x) => parseInt(x, 10))
 }
 
-export function part1(i: Array<number>) {
+export function part1(i: number[]) {
   const maxNumber = Math.max(...i)
   let result = 0
   for (let j = 1; j <= maxNumber; j++) {
@@ -21,10 +21,10 @@ export function part1(i: Array<number>) {
   return result
 }
 
-export function part2(i: Array<number>) {
+export function part2(i: number[]) {
   const maxNumber = Math.max(...i)
   let result = 0
-  const differences: Array<number> = []
+  const differences = []
   let arrCounter = 0
   for (let j = 0; j <= maxNumber; j++) {
     arrCounter += j

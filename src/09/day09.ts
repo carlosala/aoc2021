@@ -7,17 +7,12 @@ export function parseInput(file: string) {
     .map((x) => x.split("").map((y) => parseInt(y, 10)))
 }
 
-function arrNotCont(arr: Array<Array<number>>, x: Array<number>) {
+function arrNotCont(arr: number[][], x: number[]) {
   for (const el of arr) if (el[0] === x[0] && el[1] === x[1]) return false
   return true
 }
 
-function recurseBasin(
-  i: Array<Array<number>>,
-  j: number,
-  k: number,
-  stack: Array<Array<number>>
-) {
+function recurseBasin(i: number[][], j: number, k: number, stack: number[][]) {
   stack.push([j, k])
   if (j !== 0)
     if (
@@ -51,7 +46,7 @@ function recurseBasin(
   return stack
 }
 
-export function part1(i: Array<Array<number>>) {
+export function part1(i: number[][]) {
   let result = 0
   for (let j = 0; j < i.length; j++) {
     for (let k = 0; k < i[0].length; k++) {
@@ -65,7 +60,7 @@ export function part1(i: Array<Array<number>>) {
   return result
 }
 
-export function part2(i: Array<Array<number>>) {
+export function part2(i: number[][]) {
   const basins = []
   for (let j = 0; j < i.length; j++) {
     for (let k = 0; k < i[0].length; k++) {

@@ -1,8 +1,7 @@
 import { inputPath } from "../utils.ts"
 
 export function parseInput(file: string) {
-  const input = Deno.readTextFileSync(inputPath(import.meta.url, file))
-  return input
+  return Deno.readTextFileSync(inputPath(import.meta.url, file))
     .trim()
     .split("\n")
     .map((x) => x.split(" | ").map((y) => y.split(" ")))
@@ -12,7 +11,7 @@ function sort(i: string) {
   return i.split("").sort().join("")
 }
 
-export function part1(i: Array<Array<Array<string>>>) {
+export function part1(i: string[][][]) {
   let result = 0
   for (const line of i) {
     for (const word of line[1]) {
@@ -23,10 +22,10 @@ export function part1(i: Array<Array<Array<string>>>) {
   return result
 }
 
-export function part2(i: Array<Array<Array<string>>>) {
+export function part2(i: string[][][]) {
   let result = 0
   for (const line of i) {
-    const dict: Array<string> = Array(10).fill(undefined)
+    const dict: string[] = []
     const five = line[0].filter((w) => w.length === 5)
     const six = line[0].filter((w) => w.length === 6)
     const special = line[0].filter((w) => w.length !== 5 && w.length !== 6)
