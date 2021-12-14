@@ -1,26 +1,26 @@
-import { inputPath } from "../utils.ts"
+import { inputPath } from "../utils.ts";
 
 export function parseInput(file: string) {
   return Deno.readTextFileSync(inputPath(import.meta.url, file))
     .trim()
     .split("\n")
-    .map((x) => x.split("").map((y) => parseInt(y, 10)))
+    .map((x) => x.split("").map((y) => parseInt(y, 10)));
 }
 
 function arrNotCont(arr: number[][], x: number[]) {
-  for (const el of arr) if (el[0] === x[0] && el[1] === x[1]) return false
-  return true
+  for (const el of arr) if (el[0] === x[0] && el[1] === x[1]) return false;
+  return true;
 }
 
 function recurseBasin(i: number[][], j: number, k: number, stack: number[][]) {
-  stack.push([j, k])
+  stack.push([j, k]);
   if (j !== 0)
     if (
       i[j - 1][k] !== 9 &&
       arrNotCont(stack, [j - 1, k]) &&
       i[j][k] < i[j - 1][k]
     )
-      stack.concat(recurseBasin(i, j - 1, k, stack))
+      stack.concat(recurseBasin(i, j - 1, k, stack));
 
   if (j !== i.length - 1)
     if (
@@ -28,55 +28,55 @@ function recurseBasin(i: number[][], j: number, k: number, stack: number[][]) {
       arrNotCont(stack, [j + 1, k]) &&
       i[j][k] < i[j + 1][k]
     )
-      stack.concat(recurseBasin(i, j + 1, k, stack))
+      stack.concat(recurseBasin(i, j + 1, k, stack));
   if (k !== 0)
     if (
       i[j][k - 1] !== 9 &&
       arrNotCont(stack, [j, k - 1]) &&
       i[j][k] < i[j][k - 1]
     )
-      stack.concat(recurseBasin(i, j, k - 1, stack))
+      stack.concat(recurseBasin(i, j, k - 1, stack));
   if (k !== i[0].length - 1)
     if (
       i[j][k + 1] !== 9 &&
       arrNotCont(stack, [j, k + 1]) &&
       i[j][k] < i[j][k + 1]
     )
-      stack.concat(recurseBasin(i, j, k + 1, stack))
-  return stack
+      stack.concat(recurseBasin(i, j, k + 1, stack));
+  return stack;
 }
 
 export function part1(i: number[][]) {
-  let result = 0
+  let result = 0;
   for (let j = 0; j < i.length; j++) {
     for (let k = 0; k < i[0].length; k++) {
-      if (j !== 0) if (i[j][k] >= i[j - 1][k]) continue
-      if (j !== i.length - 1) if (i[j][k] >= i[j + 1][k]) continue
-      if (k !== 0) if (i[j][k] >= i[j][k - 1]) continue
-      if (k !== i[0].length - 1) if (i[j][k] >= i[j][k + 1]) continue
-      result += 1 + i[j][k]
+      if (j !== 0) if (i[j][k] >= i[j - 1][k]) continue;
+      if (j !== i.length - 1) if (i[j][k] >= i[j + 1][k]) continue;
+      if (k !== 0) if (i[j][k] >= i[j][k - 1]) continue;
+      if (k !== i[0].length - 1) if (i[j][k] >= i[j][k + 1]) continue;
+      result += 1 + i[j][k];
     }
   }
-  return result
+  return result;
 }
 
 export function part2(i: number[][]) {
-  const basins = []
+  const basins = [];
   for (let j = 0; j < i.length; j++) {
     for (let k = 0; k < i[0].length; k++) {
-      if (j !== 0) if (i[j][k] >= i[j - 1][k]) continue
-      if (j !== i.length - 1) if (i[j][k] >= i[j + 1][k]) continue
-      if (k !== 0) if (i[j][k] >= i[j][k - 1]) continue
-      if (k !== i[0].length - 1) if (i[j][k] >= i[j][k + 1]) continue
-      basins.push(recurseBasin(i, j, k, []).length)
+      if (j !== 0) if (i[j][k] >= i[j - 1][k]) continue;
+      if (j !== i.length - 1) if (i[j][k] >= i[j + 1][k]) continue;
+      if (k !== 0) if (i[j][k] >= i[j][k - 1]) continue;
+      if (k !== i[0].length - 1) if (i[j][k] >= i[j][k + 1]) continue;
+      basins.push(recurseBasin(i, j, k, []).length);
     }
   }
-  basins.sort((a, b) => b - a)
-  return basins[0] * basins[1] * basins[2]
+  basins.sort((a, b) => b - a);
+  return basins[0] * basins[1] * basins[2];
 }
 
 if (import.meta.main) {
-  const input = parseInput("input.txt")
-  console.log("Part 1: " + part1(input))
-  console.log("Part 2: " + part2(input))
+  const input = parseInput("input.txt");
+  console.log("Part 1: " + part1(input));
+  console.log("Part 2: " + part2(input));
 }
