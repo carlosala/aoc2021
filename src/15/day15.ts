@@ -63,9 +63,7 @@ export function part1(i: number[][]) {
     );
   dist[0][0] = 0;
   let queue: QueueEl[] = [{ pos: [0, 0], dist: 0 }];
-  while (queue.length !== 0) {
-    queue = iterateDijkstra(i, dist, done, queue);
-  }
+  while (queue.length !== 0) queue = iterateDijkstra(i, dist, done, queue);
   return dist[l - 1][l - 1];
 }
 
@@ -100,10 +98,9 @@ export function part2(i: number[][]) {
     );
   dist[0][0] = 0;
   let queue: QueueEl[] = [{ pos: [0, 0], dist: 0 }];
-  while (queue.length !== 0) {
+  while (queue.length !== 0)
     queue = iterateDijkstra(iExtended, dist, done, queue);
-  }
-  return dist[l - 1][l - 1];
+  return dist[lExtended - 1][lExtended - 1];
 }
 
 if (import.meta.main) {
